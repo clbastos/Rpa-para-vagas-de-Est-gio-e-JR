@@ -19,13 +19,13 @@ const { chromium } = require('playwright');
     await page.getByRole('textbox', { name: 'E-mail ou telefone' }).click();
     await page.waitForTimeout(1000); 
 
-    await page.getByRole('textbox', { name: 'E-mail ou telefone' }).fill('clbastos@live.com');
+    await page.getByRole('textbox', { name: 'E-mail ou telefone' }).fill('seu email aqui');
     await page.waitForTimeout(1000); 
 
     await page.getByRole('textbox', { name: 'Senha' }).click();
     await page.waitForTimeout(1000); 
 
-    await page.getByRole('textbox', { name: 'Senha' }).fill('pedro2804');
+    await page.getByRole('textbox', { name: 'Senha' }).fill('sua senha aqui');
     await page.waitForTimeout(1000); 
     
     await page.getByRole('button', { name: 'Entrar', exact: true }).click();
