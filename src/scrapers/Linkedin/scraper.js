@@ -1,12 +1,32 @@
 const { chromium } = require('playwright');
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+function perguntar(pergunta) {
+  return new Promise((resolve) => {
+    rl.question(pergunta, resolve);
+  });
+}
 
 (async () => {
-    const browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext({
-        viewport: { width: 1920, height: 1080 },
-        locale: 'pt-BR'
-    });
-    const page = await context.newPage();
+  const email = await perguntar('Digite seu e-mail: ');
+  const senha = await perguntar('Digite sua senha: ');
+  rl.close();
+
+  console.log('E-mail:', email);
+  console.log('Senha:', senha);
+
+  const browser = await chromium.launch({ headless: false });
+  const context = await browser.newContext({
+    viewport: { width: 1920, height: 1080 },
+    locale: 'pt-BR',
+  });
+
+  const page = await context.newPage();
     page.setDefaultTimeout(30000);
     page.setDefaultNavigationTimeout(60000);
     
