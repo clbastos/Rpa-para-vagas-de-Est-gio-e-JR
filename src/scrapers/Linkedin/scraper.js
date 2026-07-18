@@ -17,8 +17,7 @@ function perguntar(pergunta) {
   const senha = await perguntar('Digite sua senha: ');
   rl.close();
 
-  console.log('E-mail:', email);
-  console.log('Senha:', senha);
+
 
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext({
@@ -39,13 +38,13 @@ function perguntar(pergunta) {
     await page.getByRole('textbox', { name: 'E-mail ou telefone' }).click();
     await page.waitForTimeout(1000); 
 
-    await page.getByRole('textbox', { name: 'E-mail ou telefone' }).fill('seu email aqui');
+    await page.getByRole('textbox', { name: 'E-mail ou telefone' }).fill(email);
     await page.waitForTimeout(1000); 
 
     await page.getByRole('textbox', { name: 'Senha' }).click();
     await page.waitForTimeout(1000); 
 
-    await page.getByRole('textbox', { name: 'Senha' }).fill('sua senha aqui');
+    await page.getByRole('textbox', { name: 'Senha' }).fill(senha);
     await page.waitForTimeout(1000); 
     
     await page.getByRole('button', { name: 'Entrar', exact: true }).click();
@@ -70,10 +69,7 @@ function perguntar(pergunta) {
     await page.getByRole('textbox', { name: 'Cidade, estado ou código' }).press('Enter');
     await page.waitForTimeout(2000);
 
-
-
-    // Aguarda entrada do usuário (requer readline)
     await new Promise(resolve => process.stdin.once('data', resolve));
     
-    await browser.close();
+        
 })();
